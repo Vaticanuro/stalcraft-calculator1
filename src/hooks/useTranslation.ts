@@ -1,6 +1,7 @@
 // hooks/useTranslation.ts
 import { useContext } from 'react';
 import { TranslationContext } from '../contexts/TranslationContext';
+import { CraftTreeNode, TranslatedCraftTreeNode } from '../types/craft'; // или '../types'
 
 export function useTranslation() {
     const context = useContext(TranslationContext);
@@ -24,11 +25,11 @@ export function useTranslation() {
         
         // Для дерева крафта
         translateCraftTree: (node: CraftTreeNode): TranslatedCraftTreeNode => ({
-            ...node,
-            itemName: context.getItemName(node.itemId),
-            children: node.children.map(child => 
-                this.translateCraftTree(child)
-            )
-        })
+    ...node,
+    itemName: context.getItemName(node.itemId),
+    children: node.children.map(child => 
+        translateCraftTree(child) // Убрали this.
+    )
+})
     };
 }

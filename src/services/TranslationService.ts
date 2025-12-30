@@ -1,3 +1,6 @@
+import { TranslationCache, ItemDisplayInfo } from '../types/translation';
+import { Recipe } from '../types/recipes';
+
 // services/TranslationService.ts
 class TranslationService {
     private cache: TranslationCache = {
@@ -64,4 +67,24 @@ class TranslationService {
         // Пример: "workbench_ammo_9mm_result_okp24"
         return `${recipe.bench}_${recipe.category.key}_${recipe.subcategory.key}_result_${recipe.result[0].item}`;
     }
+    private async loadListing(): Promise<any[]> {
+    // Заглушка - вернём пустой массив
+    return [];
+}
+
+private async loadItemDetails(dataPath: string): Promise<any> {
+    // Заглушка
+    return {
+        id: 'temp',
+        name: { lines: { ru: 'Временный', en: 'Temporary' } },
+        icon: '/icons/unknown.png',
+        color: 'DEFAULT',
+        category: 'unknown'
+    };
+}
+
+private async loadPerks(): Promise<any[]> {
+    // Заглушка
+    return [];
+}
 }

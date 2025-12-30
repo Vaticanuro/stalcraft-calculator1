@@ -1,31 +1,37 @@
 import { Translation } from './core';
 
-// Навык (Perk)
-export interface Perk {
-    id: string;  // "ammunition", "pyrotechnics"
-    name: Translation;
-    desc: Translation;
+export interface CraftTreeNode {
+    itemId: string;
+    quantity: number;
+    children: CraftTreeNode[];
 }
 
-// Компонент крафта
-export interface CraftingComponent {
-    item: string;  // ID предмета
-    amount: number;
+export interface TranslatedCraftTreeNode extends CraftTreeNode {
+    itemName: string;
+    icon?: string;
+    color?: string;
+    children: TranslatedCraftTreeNode[];
+
 }
 
-// Требования для крафта
-export interface CraftRequirements {
-    perks: Record<string, number>; // { "ammunition": 1 }
-    features: string[];            // ["workbench", "precise_tools"]
+export interface CraftContext {
+    // Определите структуру позже
 }
 
-// Рецепт
+export interface CraftCalculation {
+    // Определите структуру позже
+}
+
 export interface Recipe {
-    bench: 'workbench' | 'kitchen_table' | 'laboratory_table' | string;
+    id: string;
+    bench: string;
     category: Translation;
     subcategory: Translation;
-    result: CraftingComponent[];
-    ingredients: CraftingComponent[];
+    result: Array<{ item: string; amount: number }>;
+    ingredients: Array<{ item: string; amount: number }>;
     energy: number;
-    requirements: CraftRequirements;
+    requirements: {
+        perks: Record<string, number>;
+        features: string[];
+    };
 }

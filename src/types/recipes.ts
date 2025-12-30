@@ -1,3 +1,4 @@
+import { Translation } from './core';
 // Файл: types/recipes.ts
 // --- Навык (Perk) ---
 export interface Perk {
