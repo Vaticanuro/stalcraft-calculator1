@@ -1,14 +1,13 @@
-// src/types/craft.ts
 import { Translation } from './core';
 
-// Навык (Perk) - для требований к крафту
+// Навык (Perk)
 export interface Perk {
     id: string;  // "ammunition", "pyrotechnics"
     name: Translation;
     desc: Translation;
 }
 
-// Компонент крафта (ингредиент или результат)
+// Компонент крафта
 export interface CraftingComponent {
     item: string;  // ID предмета
     amount: number;
@@ -20,11 +19,9 @@ export interface CraftRequirements {
     features: string[];            // ["workbench", "precise_tools"]
 }
 
-// Рецепт крафта
+// Рецепт
 export interface Recipe {
-    // Идентификатор рецепта (генерируем сами)
-    id?: string;
-    bench: 'workbench' | 'kitchen_table' | 'laboratory_table';
+    bench: 'workbench' | 'kitchen_table' | 'laboratory_table' | string;
     category: Translation;
     subcategory: Translation;
     result: CraftingComponent[];

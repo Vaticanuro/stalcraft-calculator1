@@ -1,20 +1,32 @@
-// src/types/loading.ts
-
 // Приоритеты загрузки
 export enum LoadPriority {
-    CRITICAL = 0,    // Текущий расчет + базовые ресурсы
-    HIGH = 1,        // Часто используемые предметы
-    MEDIUM = 2,      // Предметы из активных категорий
+    CRITICAL = 0,    // Текущий расчёт
+    HIGH = 1,        // Часто используемые
+    MEDIUM = 2,      // Активные категории
     LOW = 3,         // Все остальные
     BACKGROUND = 4   // Фоновая предзагрузка
 }
 
-// Состояние загрузки предмета
+// Состояние загрузки
 export type LoadState = 
-    | 'not_loaded'    // Еще не запрашивали
-    | 'loading'       // В процессе загрузки
-    | 'loaded'        // Успешно загружено
-    | 'error';        // Ошибка загрузки
+    | 'not_loaded'
+    | 'loading'
+    | 'loaded'
+    | 'error';
+
+// Кешированный предмет
+export interface CachedItem {
+    id: string;
+    name: string;           // Русское название
+    icon: string;
+    color: string;
+    category: string;
+    weight?: number;
+    basePrice?: number;
+    isUsedInCrafts?: boolean;
+    loadState: LoadState;
+    lastAccessed: number;   // Для LRU кеша
+}
 
 // Задача загрузки
 export interface LoadTask {
@@ -23,17 +35,4 @@ export interface LoadTask {
     resolve: (value: ItemDetail | null) => void;
     reject: (error: Error) => void;
     timestamp: number;
-}
-
-// Кешированный предмет (только то, что нужно для UI)
-export interface CachedItem {
-    id: string;
-    name: string;           // Русское название
-    icon: string;
-    color: ItemColor;
-    category: string;
-    weight?: number;
-    basePrice?: number;
-    loadState: LoadState;
-    lastAccessed: number;   // Для LRU кеша
 }

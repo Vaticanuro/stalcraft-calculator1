@@ -6,6 +6,7 @@ export * from './items';
 export * from './craft';
 export * from './loading';
 
+export type ItemSource = 'craft' | 'auction' | 'inventory' | 'vendor';
 // Можно добавить составные типы
 export interface CraftTreeItem {
     itemId: string;
