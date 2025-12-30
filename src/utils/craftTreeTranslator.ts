@@ -1,4 +1,27 @@
 // utils/craftTreeTranslator.ts
+
+// Временные заглушки типов (позже вынесете в отдельный файл типов)
+interface CraftTreeNode {
+    itemId: string;
+    quantity: number;
+    children: CraftTreeNode[];
+}
+
+interface TranslatedCraftTreeNode extends CraftTreeNode {
+    itemName: string;
+    icon?: string;
+    color?: string;
+}
+
+// Временные заглушки функций (позже замените на реальные)
+function getIcon(itemId: string): string {
+    return `/icons/${itemId}.png`; // Пример пути
+}
+
+function getColor(itemId: string): string {
+    return 'DEFAULT'; // Пример цвета
+}
+
 export function translateCraftTree(
     node: CraftTreeNode, 
     getName: (id: string) => string
@@ -17,6 +40,8 @@ export function translateCraftTree(
     };
 }
 
+// Пример использования (этот код можно удалить или закомментировать)
+/*
 // Где-то в компоненте дерева крафта:
 const CraftTreeComponent: React.FC<{tree: CraftTreeNode}> = ({ tree }) => {
     const { getName } = useItemNames();
@@ -27,3 +52,4 @@ const CraftTreeComponent: React.FC<{tree: CraftTreeNode}> = ({ tree }) => {
     
     return <CraftTreeNodeView node={translatedTree} />;
 };
+*/
