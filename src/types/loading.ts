@@ -1,3 +1,6 @@
+// Импортируем необходимые типы
+import { ItemDetail } from './items';
+
 // Приоритеты загрузки
 export enum LoadPriority {
     CRITICAL = 0,    // Текущий расчёт
